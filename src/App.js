@@ -9,10 +9,11 @@ import Menuss from "./components/Menus";
 
 function App() {
     const [Menus, setMenus] = useState([]);
+    const [pilihCategory, setPilihCategory] = useState("Makanan");
 
     useEffect(() => {
         axios
-            .get(API_URL + "products")
+            .get(API_URL + "products?category.nama=" + pilihCategory)
             .then((response) => {
                 setMenus(response.data);
             })
@@ -21,6 +22,7 @@ function App() {
             });
     }, []);
     // console.log(Menus);
+
     return (
         <>
             <NavbarComponent />
